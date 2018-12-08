@@ -851,11 +851,11 @@ def run_command(command: str, inp: str='', ignore_output: bool = False) -> (str,
 def usage():
     """Displays command-line information."""
     name = os.path.basename(__file__)
-    print('%s' % name)
+    print('%s %s' % (name, __version__))
     print('Usage: %s <file> [-o file]' % name)
     print('Command Line Arguments:')
     print('<file>            : The configuration file to use.')
-    print('[-o file]         : Output metrics to a csv file.')
+    print('-o <file>         : (OPTIONAL) Output metrics to a csv file.')
 
 
 def parse_args(argv: list) -> bool:
