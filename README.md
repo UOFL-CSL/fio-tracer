@@ -1,13 +1,13 @@
 # FIO Tracer
 An I/O tracing utility based on [iobs](https://github.com/UOFL-CSL/iobs) which utilizes `fio` and `blktrace` to track the 
 latencies of an IO across the Linux Kernel. This requires an additional 'S' tracepoint to be added, similar to what's 
-done [here](https://github.com/jaredlgillespie/linux-nvme-s-tracepoint). The following Linux tools are utilized 
+done [here](https://github.com/uofl-csl/linux-nvme-s-tracepoint). The following Linux tools are utilized 
 internally: `blktrace` and `fio`.
 
 ## Installation
 The latest version can be obtained via `wget`:
 ```bash
-$ wget https://raw.githubusercontent.com/JaredLGillespie/fio-tracer/master/fio-tracer.py
+$ wget https://raw.githubusercontent.com/uofl-csl/fio-tracer/master/fio-tracer.py
 ```
 ## Getting Started
 Executing the script without any arguments shows the different arguments that can be used:
@@ -70,4 +70,4 @@ In addition to STDOUT, an output file can be given via the `[-o] < output>` comm
 * device
 
 ## License
-Copyright (c) 2018 UofL Computer Systems Lab. See [LICENSE](https://github.com/JaredLGillespie/fio-tracer/blob/master/LICENSE) for details.
+Copyright (c) 2018 UofL Computer Systems Lab. See [LICENSE](https://github.com/uofl-csl/fio-tracer/blob/master/LICENSE) for details.
