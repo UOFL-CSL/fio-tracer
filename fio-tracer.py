@@ -15,7 +15,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 
-from collections import OrderedDict
+from collections import namedtuple, OrderedDict
 from functools import wraps
 from getopt import getopt, GetoptError
 from time import strftime, localtime
@@ -34,7 +34,7 @@ import time
 
 
 __author__ = 'Jared Gillespie'
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 
 def try_split(s: str, delimiter) -> list:
