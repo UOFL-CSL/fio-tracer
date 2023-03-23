@@ -1,0 +1,13 @@
+[brd]
+rw=randread
+ioengine=pvsync2
+direct=1
+iodepth=1
+hipri
+bs=4K
+filename=/mnt/nvme0n1/fiotest
+size=900M
+time_based
+runtime=10
+norandommap
+write_lat_log=nvme_lat

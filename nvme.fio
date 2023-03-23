@@ -1,0 +1,16 @@
+[nvme]
+rw=randread
+ioengine=libaio
+direct=1
+iodepth=1
+#hipri
+bs=4K
+filename=/dev/nvme0n1
+size=900M
+time_based
+runtime=10
+numjobs=1
+thread
+norandommap
+write_lat_log=nvme_lat
+log_offset=1

@@ -263,8 +263,8 @@ class Mem:
 
                 while clat_line:
                     slat_line = sf.readline().strip()
-                    timestamp, clat, data_direction, block_size, offset = clat_line.split(',')
-                    timestamp, slat, data_direction, block_size, offset = slat_line.split(',')
+                    timestamp, clat, data_direction, block_size, offset, _ = clat_line.split(',')
+                    timestamp, slat, data_direction, block_size, offset, _ = slat_line.split(',')
 
                     lba = start_lba + int(offset) // 512
                     io = IO(int(timestamp), lba)
@@ -279,11 +279,11 @@ class Mem:
 
                     clat_line = cf.readline().strip()
 
+
         # Read blkparse Q, D, C into IO map
         with open(blkparse_file) as bf:
             for line in bf:
                 line_split = line.strip().split()
-
                 # Hitting stats at bottom of file
                 if len(line_split) < 3:
                     break
@@ -327,9 +327,9 @@ class Mem:
 
         :param out: Output of fio (should be json).
         """
-        data = json.loads(out, encoding='utf-8')
+        data = json.loads(out)
         job = data['jobs'][0]
-        Mem.rw = data['global options']['rw']
+        Mem.rw = job['job options']['rw']
 
         if Mem.rw in ('read', 'randread'):
             Mem.stddev = float(job['read']['clat_ns']['stddev']) * 0.001  # convert from ns to μs
@@ -356,6 +356,7 @@ class Mem:
         for io in io_list:
             if not io.valid:
                 continue
+
 
             ios_counted += 1
             avg_clat += io.clat
@@ -433,7 +434,7 @@ class IO:
 
     @property
     def fs(self):
-        return self.clat - self.q2c
+        return self.clat - (self.q2c + self.slat)
 
     @property
     def q2c(self):
